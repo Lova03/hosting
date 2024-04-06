@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.cdnfonts.com/css/minecraft-4');
+@import url('https://fonts.cdnfonts.com/css/whitney-2');
+@import url('https://fonts.cdnfonts.com/css/earth-orbiter');
+@import url('https://fonts.cdnfonts.com/css/magical-markers');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #221e22;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(64, 64, 69);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(83, 83, 88);
+}
+
+::-moz-scrollbar-button:decrement,
+::-moz-scrollbar-button:increment,
+::-webkit-scrollbar-button:decrement,
+::-webkit-scrollbar-button:increment {
+  width: 0px;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar-track {
+  background: #44355b;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar-thumb {
+  background: #725f8e;
+  border-radius: 2px;
+}
+.dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #846ea4;
+}
+
+.nav-scrollbar::-webkit-scrollbar-track {
+  background: #31263e;
+}
+
+.nav-scrollbar::-webkit-scrollbar-thumb {
+  background: #725f8e;
+  border-radius: 2px;
+}
+.nav-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #846ea4;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar,
+.nav-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.table-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* 
+.cm-scroller::-webkit-scrollbar-track {
+  background: #21202e;
+}
+.cm-scroller::-webkit-scrollbar {
+  height: 6px;
+} */
+
+/* Firefox scrollbar styles for the 'dropdown' class */
+/* .dropdown-scrollbar {
+  scrollbar-color: #404045 #44355b;
+}
+
+.nav-scrollbar {
+  scrollbar-color: #404045 #31263e;
+} */
+
+.gradient-mask {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.single-thumb .range-slider__thumb[data-lower] {
+  width: 0;
+}
+.single-thumb .range-slider__range {
+  background-color: transparent;
+  border-radius: 6px;
+}
+
+.single-thumb .range-slider__thumb[data-upper] {
+  background-color: #ee5622; /* flame-900 */
+  width: 16px;
+  height: 16px;
+  border: solid 2px #f38964;
+  transition: color 0.3s;
+  transition: transform 0.3s;
+}
+
+.single-thumb .range-slider__thumb[data-active] {
+  transform: translate(-50%, -50%) scale(1.25);
+  background-color: #ef6434; /* flame-800 */
+}
+
+@layer components {
+  .page {
+    @apply relative w-full h-mscreen mt-12 md:mt-0 md:h-screen px-3 pt-1 pb-8 overflow-y-auto overflow-x-hidden;
+  }
+  .navitem {
+    @apply h-12 flex relative items-center;
+  }
+
+  /* Active : NavItem Icon */
+  .navitem.active .navitem-icon {
+    @apply bg-violet-500/20 text-flame-900;
+  }
+
+  /* Active: NavItem Text */
+  .navitem.active .navitem-text {
+    @apply bg-violet-500/10;
+  }
+
+  /* NavItem Icon */
+  .navitem-icon {
+    @apply h-12 w-12 relative grid place-items-center transition-all duration-100 cursor-pointer group-hover:bg-violet-700/10;
+  }
+
+  /* NavItem Text */
+  .navitem-text {
+    @apply overflow-hidden flex-1 items-center h-12 pl-4 transition-all duration-100 cursor-pointer group-hover:bg-black/10;
+  }
+
+  /* NavItem Tooltip */
+  .navitem-tooltip {
+    @apply transition-all duration-75 scale-0 absolute left-[110%] py-1 px-2 bg-zinc-700/70 rounded-md text-sm text-slate-200 group-hover:scale-100;
+  }
+
+  /* ServiceCarousel Slide */
+  .service-slide {
+    @apply relative flex items-center justify-center h-64 p-5 cursor-grab isolate;
+  }
+
+  /* UserPanel Dropdown Item */
+  .userpanelitem {
+    @apply flex items-center h-9 px-6 space-x-4 cursor-pointer transition-all duration-200 hover:text-hunyadi-yellow;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
