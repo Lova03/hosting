@@ -83,7 +83,7 @@ function Navbar() {
           {loggedIn ? (
             <div className='h-8 flex w-5/6 space-x-1'>
               <div className='flex items-center justify-center rounded-md bg-english-violet-900 flex-1 border border-solid border-english-violet-800'>
-                <span className='px-1 font-rubik font-bold'>{(user?.balance || 0).toFixed(2)}$</span>
+                <span className='px-1 font-rubik font-bold'>${(user?.balance || 0).toFixed(2)}</span>
               </div>
               <Link
                 to='/billing/funds'
@@ -188,7 +188,7 @@ function Navbar() {
               {loggedIn ? (
                 <div className='h-8 flex w-5/6 space-x-1'>
                   <div className='flex items-center justify-center rounded-md bg-english-violet-900 flex-1 border border-solid border-english-violet-800'>
-                    <span className='px-1 font-rubik font-bold'>{(user?.balance || 0).toFixed(2)}$</span>
+                    <span className='px-1 font-rubik font-bold'>${(user?.balance || 0).toFixed(2)}</span>
                   </div>
                   <Link
                     to='/billing/funds'

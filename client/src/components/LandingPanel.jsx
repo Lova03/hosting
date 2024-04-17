@@ -14,7 +14,7 @@ function LandingPanel() {
     <div className='flex items-center justify-center flex-wrap md:justify-end gap-8'>
       <div className='relative flex flex-col h-40 w-full max-w-xs p-4 rounded-md bg-dark-purple overflow-hidden'>
         <div className='flex justify-between items-start'>
-          <span className='font-rubik font-bold text-3xl'>{user?.balance || 0}$</span>
+          <span className='font-rubik font-bold text-3xl'>${user?.balance || 0}</span>
           <CreditCardIcon className='h-7 text-flame-900' />
         </div>
         <span className='mt-1 text-slate-300 text-sm'>Available Balance</span>
