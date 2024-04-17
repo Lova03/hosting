@@ -1,5 +1,33 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { selectAllProducts } from '../products/productsSlice';
+
+export const loadAndValidateCart = createAsyncThunk(
+  'cart/loadAndValidate',
+  async (_, { getState, dispatch }) => {
+    const savedCart = localStorage.getItem('cart');
+    if (!savedCart) return;
+
+    const products = selectAllProducts(getState());
+    const cartItems = JSON.parse(savedCart).items;
+
+    const validatedItems = cartItems.filter((cartItem) => {
+      return (
+        products.minecraft?.some(
+          (p) => p._id === cartItem._id && p.pricePerMonth === cartItem.pricePerMonth
+        ) ||
+        products.discordBot?.some(
+          (p) => p._id === cartItem._id && p.pricePerMonth === cartItem.pricePerMonth
+        ) ||
+        products.vps?.some((p) => p._id === cartItem._id && p.pricePerMonth === cartItem.pricePerMonth)
+      );
+    });
+
+    validatedItems.forEach((item) => {
+      dispatch(addToCart(item));
+    });
+  }
+);
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -18,14 +46,19 @@ const cartSlice = createSlice({
 
       const existingItem = state.items.find((item) => item.itemConfigKey === itemConfigKey);
 
-      if (!existingItem) {
-        state.items.push({ ...newItem, quantity: 1, itemConfigKey: itemConfigKey });
+      if (existingItem) {
+        existingItem.quantity += newItem.quantity || 1;
       } else {
-        existingItem.quantity++;
+        state.items.push({
+          ...newItem,
+          quantity: newItem.quantity || 1,
+          itemConfigKey: itemConfigKey,
+        });
       }
 
-      state.totalPrice = Math.round((state.totalPrice + newItem.pricePerMonth) * 100) / 100;
-      state.totalQuantity++;
+      state.totalPrice =
+        Math.round((state.totalPrice + newItem.pricePerMonth * (newItem.quantity || 1)) * 100) / 100;
+      state.totalQuantity += newItem.quantity || 1;
     },
     updateItemQuantity(state, action) {
       const { itemConfigKey, quantity } = action.payload;

@@ -12,7 +12,7 @@ function PaymentMethod({ id, imgSrc, text }) {
   return (
     <label
       htmlFor={id}
-      className='relative isolate flex flex-col justify-start overflow-hidden cursor-pointer py-2 px-4 h-28 w-52 shrink-0 rounded-lg bg-black/10'>
+      className='relative isolate flex flex-col justify-start overflow-hidden cursor-pointer py-2 px-4 h-28 w-52 shrink-0 rounded-lg bg-black/10 transition-all duration-500 hover:bg-white/5'>
       <span className='uppercase font-bold text-sm text-hunyadi-yellow'>{text}</span>
       <img
         draggable={false}

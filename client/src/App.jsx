@@ -17,23 +17,26 @@ import VPSProductsPage from './pages/VPSProductsPage';
 import DiscordProductsPage from './pages/DiscordProductsPage';
 import { selectSignInOpened } from './features/controls/controlsSlice';
 import SignInModal from './components/SignInModal';
-import { fetchProducts } from './features/products/productsSlice';
 import ToolsPage from './pages/ToolsPage';
 import LegalPage from './pages/LegalPage';
 import TOSPage from './pages/TOSPage';
 import PrivacyPage from './pages/PrivacyPage';
 import SLAPage from './pages/SLAPage';
-import DashboardPage from './pages/DashboardPage';
+import DashboardPage from './pages/panel/DashboardPage';
 import CartPage from './pages/CartPage';
 import BillingPage from './pages/BillingPage';
 import FundsPage from './pages/FundsPage';
+import { loadAndValidateCart } from './features/cart/cartSlice';
+import { fetchProducts } from './features/products/productsSlice';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
-    dispatch(fetchProducts());
+    dispatch(fetchProducts()).then(() => {
+      dispatch(loadAndValidateCart());
+    });
   }, [dispatch]);
 
   return (

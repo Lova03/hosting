@@ -21,7 +21,7 @@ function Footer() {
             <span className='uppercase font-bold select-none'>About</span>
             <div className='flex flex-col space-y-2 mt-4'>
               <span>ZoBlaze</span>
-              <span>Zowix</span>
+              <span></span>
               <span>Tools</span>
             </div>
           </div>

@@ -104,7 +104,7 @@ function CartItem({ item }) {
   };
 
   const addItem = () => {
-    dispatch(addToCart({ ...item }));
+    dispatch(addToCart({ ...item, quantity: 1 }));
   };
 
   const removeAll = () => {

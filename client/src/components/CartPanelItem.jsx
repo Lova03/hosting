@@ -17,7 +17,7 @@ function CartPanelItem({ item }) {
   };
 
   const addItem = () => {
-    dispatch(addToCart({ ...item, itemConfigKey }));
+    dispatch(addToCart({ ...item, quantity: 1, itemConfigKey }));
   };
 
   return (
