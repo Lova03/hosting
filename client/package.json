@@ -11,17 +11,10 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@codemirror/autocomplete": "^6.12.0",
-    "@codemirror/commands": "^6.3.3",
     "@heroicons/react": "^2.1.1",
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.2.1",
-    "@uiw/codemirror-theme-aura": "^4.21.24",
-    "@uiw/codemirror-theme-dracula": "^4.21.24",
-    "@uiw/codemirror-theme-vscode": "^4.21.24",
-    "@uiw/react-codemirror": "^4.21.24",
     "axios": "^1.6.5",
-    "codemirror": "^6.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
@@ -33,8 +26,7 @@
     "react-router-dom": "^6.21.1",
     "react-select": "^5.8.0",
     "react-spring": "^9.7.3",
-    "react-toastify": "^9.1.3",
-    "swiper": "^11.1.0"
+    "react-toastify": "^9.1.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
