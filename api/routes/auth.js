@@ -29,7 +29,26 @@ authRouter.get('/logout', function (req, res) {
 });
 
 authRouter.get('/', checkAuth, function (req, res) {
-  res.status(200).json({ ...req.user, success: req.user ? true : false });
+  if (!req.user) {
+    return res.status(401).json({ success: false, message: 'User not authenticated' });
+  }
+
+  const userResponse = {
+    services: req.user.services,
+    _id: req.user._id,
+    discordId: req.user.discordId,
+    id: req.user.id,
+    username: req.user.username,
+    isAdmin: req.user.isAdmin,
+    balance: req.user.balance,
+    xp: req.user.xp,
+    role: req.user.role,
+    avatar: req.user.avatar,
+    createdAt: req.user.createdAt,
+    success: true,
+  };
+
+  res.status(200).json(userResponse);
 });
 
 module.exports = authRouter;
