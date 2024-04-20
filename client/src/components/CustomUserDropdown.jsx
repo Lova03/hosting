@@ -70,8 +70,8 @@ function CustomUserDropdown() {
         className='flex relative space-x-1 select-none items-center px-1 py-0.5 rounded cursor-pointer group'>
         <UserAvatar
           src={
-            user?.userid && user?.avatar
-              ? `https://cdn.discordapp.com/avatars/${user.userid}/${user.avatar}.png?size=2048`
+            user?.discordId && user?.avatar
+              ? `https://cdn.discordapp.com/avatars/${user.discordId}/${user.avatar}.png?size=2048`
               : null
           }
         />
