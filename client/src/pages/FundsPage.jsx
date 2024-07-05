@@ -3,8 +3,6 @@ import UserPanel from '../components/UserPanel';
 import PaymentMethodSelect from '../components/PaymentMethodSelect';
 import Footer from '../components/Footer';
 import Transactions from '../components/Transactions';
-import { useSelector } from 'react-redux';
-import { selectDepositAmount } from '../features/controls/controlsSlice';
 import SavedPaymentMethods from '../components/SavedPaymentMethods';
 import PaymentPanel from '../components/PaymentPanel';
 import PaymentButton from '../components/PaymentButton';
@@ -34,7 +32,10 @@ function FundsPage() {
 
       <div className='w-full flex justify-center mt-24'>
         <div className='relative w-full max-w-4xl flex justify-center'>
-          <SavedPaymentMethods />
+          <div className='w-full flex flex-col rounded-lg shadow-lg p-4 bg-dark-purple'>
+            <span className='font-semibold text-xl mb-12'>Payment Methods</span>
+            <SavedPaymentMethods />
+          </div>
         </div>
       </div>
 
@@ -44,7 +45,7 @@ function FundsPage() {
         </div>
       </div>
 
-      <div className=' mt-44'>
+      <div className='mt-44'>
         <Footer />
       </div>
     </div>

@@ -48,7 +48,7 @@ function ServicesCarousel() {
             <div className='flex w-full flex-1 items-center justify-center'>
               <Link
                 to='/products/minecraft'
-                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-lime-500 to-emerald-500 rounded font-bold'>
+                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-lime-500 to-emerald-500 rounded font-bold hover:to-emerald-600'>
                 Adventure Awaits
               </Link>
             </div>
@@ -75,7 +75,7 @@ function ServicesCarousel() {
             <div className='flex w-full flex-1 items-center justify-center'>
               <Link
                 to='/products/discord'
-                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-blurple-900 to-indigo-500 rounded font-bold'>
+                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-blurple-900 to-indigo-500 rounded font-bold hover:to-indigo-700'>
                 Initiate Bot Launch
               </Link>
             </div>
@@ -100,7 +100,7 @@ function ServicesCarousel() {
             <div className='flex w-full flex-1 items-center justify-center'>
               <Link
                 to='/products/vps'
-                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-purple-700 to-pink-500 rounded font-bold'>
+                className='select-none mt-5 px-8 py-4 bg-gradient-to-tr from-purple-700 to-pink-500 rounded font-bold hover:to-pink-600'>
                 Engage Hyperdrive
               </Link>
             </div>
@@ -125,12 +125,12 @@ function ServicesCarousel() {
             <div className='flex w-full flex-1 flex-col xs:flex-row items-center justify-center'>
               <Link
                 to='/tools/syntax-checker'
-                className='select-none xs:mr-2 xs:mt-5 px-8 py-4 bg-gradient-to-tr from-rose-700 to-red-500 rounded font-bold'>
+                className='select-none xs:mr-2 xs:mt-5 px-8 py-4 bg-gradient-to-tr from-rose-700 to-red-500 rounded font-bold hover:to-red-600'>
                 Spell Check Code
               </Link>
               <Link
                 to='/tools/editor'
-                className='select-none mt-2 xs:mt-5 px-8 py-4 bg-gradient-to-tr from-gray-700 to-zinc-500 rounded font-bold'>
+                className='select-none mt-2 xs:mt-5 px-8 py-4 bg-gradient-to-tr from-gray-700 to-zinc-500 rounded font-bold hover:to-zinc-600'>
                 Craft Your Story
               </Link>
             </div>

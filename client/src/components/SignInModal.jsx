@@ -47,7 +47,9 @@ function SignInModal() {
     }
 
     dispatch(toggleSignInModal(false));
-    window.open(`${apiBaseUrl}/auth/discord`, '_self');
+    const currentUrl = window.location.href;
+    console.log('Redirect URL:', currentUrl); // Debugging
+    window.open(`${apiBaseUrl}/auth/discord?redirect=${encodeURIComponent(currentUrl)}`, '_self');
   };
 
   if (loggedIn || isLoading) return <div></div>;

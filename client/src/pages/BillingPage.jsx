@@ -82,7 +82,10 @@ function BillingPage() {
 
       <div className='w-full flex justify-center mt-24'>
         <div className='relative w-full max-w-4xl flex justify-center'>
-          <SavedPaymentMethods />
+          <div className='w-full flex flex-col rounded-lg shadow-lg p-4 bg-dark-purple'>
+            <span className='font-semibold text-xl mb-12'>Payment Methods</span>
+            <SavedPaymentMethods />
+          </div>
         </div>
       </div>
 
@@ -92,7 +95,7 @@ function BillingPage() {
         </div>
       </div>
 
-      <div className=' mt-44'>
+      <div className='mt-44'>
         <Footer />
       </div>
     </div>

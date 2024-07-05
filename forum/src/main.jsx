@@ -10,11 +10,19 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </Provider>
 );
+
+/*
+
+
+  <React.StrictMode>
+
+  </React.StrictMode>
+
+
+ */

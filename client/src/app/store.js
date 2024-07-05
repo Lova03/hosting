@@ -1,8 +1,9 @@
 import { configureStore, createListenerMiddleware, isAnyOf } from '@reduxjs/toolkit';
 import controlsReducer from '../features/controls/controlsSlice';
-import userReducer from '../features/user/userSlice';
+import userReducer, { selectUser } from '../features/user/userSlice';
 import cartReducer from '../features/cart/cartSlice';
 import productsReducer from '../features/products/productsSlice';
+import notificationReducer from '../features/notifications/notificationsSlice';
 import {
   addToCart,
   updateItemQuantity,
@@ -17,6 +18,7 @@ const listenerMiddleware = createListenerMiddleware();
 export const store = configureStore({
   reducer: {
     controls: controlsReducer,
+    notifications: notificationReducer,
     user: userReducer,
     cart: cartReducer,
     products: productsReducer,
@@ -35,6 +37,9 @@ listenerMiddleware.startListening({
   ),
   effect: async (action, listenerApi) => {
     const currentState = listenerApi.getState();
-    localStorage.setItem('cart', JSON.stringify(currentState.cart));
+    const user = selectUser(currentState);
+    if (user && user._id) {
+      localStorage.setItem(`cart_${user._id}`, JSON.stringify(currentState.cart));
+    }
   },
 });

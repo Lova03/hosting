@@ -7,16 +7,26 @@ const prompt = 'consent';
 
 authRouter.get(
   '/discord',
-  passport.authenticate('discord', { scope: scopes, prompt: prompt }),
-  function (req, res) {}
+  (req, res, next) => {
+    const redirect = req.query.redirect || process.env.CLIENT_URL;
+    req.session.redirectTo = redirect;
+    console.log('Session ID on /discord:', req.sessionID);
+    console.log('Storing redirect URL in session:', req.session.redirectTo);
+    next();
+  },
+  passport.authenticate('discord', { scope: scopes, prompt: prompt })
 );
 
 authRouter.get(
   '/discord/callback',
   passport.authenticate('discord', { failureRedirect: '/' }),
-  function (req, res) {
-    res.redirect(process.env.CLIENT_URL);
-  } // auth success
+  (req, res) => {
+    console.log('Session ID on /discord/callback:', req.sessionID);
+    const redirectTo = req.session.redirectTo || process.env.CLIENT_URL;
+    console.log('Redirect to from session:', redirectTo);
+    delete req.session.redirectTo;
+    res.redirect(redirectTo);
+  }
 );
 
 authRouter.get('/logout', function (req, res) {
@@ -40,11 +50,16 @@ authRouter.get('/', checkAuth, function (req, res) {
     id: req.user.id,
     username: req.user.username,
     isAdmin: req.user.isAdmin,
+    isContributor: req.user.isContributor,
     balance: req.user.balance,
     xp: req.user.xp,
     role: req.user.role,
     avatar: req.user.avatar,
     createdAt: req.user.createdAt,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    contactNumber: req.user.contactNumber,
+    billingAddress: req.user.billingAddress,
     success: true,
   };
 

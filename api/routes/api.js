@@ -1,8 +1,13 @@
 const apiRouter = require('express').Router();
 const Promocode = require('../models/promocode');
-const User = require('../models/user');
-const PaymentCard = require('../models/paymentcard');
-const checkAuth = require('../helpers/verify');
+const { checkSyntax } = require('../helpers/skriptChecker');
+const articlesRouter = require('./articles');
+const userRouter = require('./user');
+const notiRouter = require('./notifications');
+
+apiRouter.use('/articles', articlesRouter);
+apiRouter.use('/user', userRouter);
+apiRouter.use('/notifications', notiRouter);
 
 // Get all products
 apiRouter.get('/products', (req, res, next) => {
@@ -187,127 +192,14 @@ apiRouter.post('/validate-promocode', async (req, res) => {
   }
 });
 
-// Get user settings
-apiRouter.get('/user/settings', checkAuth, async (req, res) => {
+apiRouter.post('/check-syntax', async (req, res) => {
+  const { code } = req.body;
   try {
-    const user = await User.findById(req.user._id);
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found.',
-      });
-    }
-    res.status(200).json({
-      success: true,
-      settings: {
-        fullName: user.fullName,
-        contactNumber: user.contactNumber,
-        billingAddress: user.billingAddress,
-      },
-    });
+    const isValid = await checkSyntax(code);
+    res.json({ success: true, isValid });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error fetching user settings.',
-    });
-  }
-});
-
-// Update user settings
-apiRouter.put('/user/settings', checkAuth, async (req, res) => {
-  const { fullName, contactNumber, billingAddress } = req.body;
-  try {
-    const user = await User.findByIdAndUpdate(
-      req.user._id,
-      {
-        fullName,
-        contactNumber,
-        billingAddress,
-      },
-      { new: true }
-    );
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        message: 'User not found.',
-      });
-    }
-    res.status(200).json({
-      success: true,
-      message: 'User settings updated successfully.',
-      settings: {
-        fullName: user.fullName,
-        contactNumber: user.contactNumber,
-        billingAddress: user.billingAddress,
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error updating user settings.',
-    });
-  }
-});
-
-// Get all payment cards for a user
-apiRouter.get('/user/payment-cards', checkAuth, async (req, res) => {
-  try {
-    const cards = await PaymentCard.find({ userId: req.user._id }).select('-cardNumber');
-    res.json({ success: true, cards });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to retrieve payment cards.' });
-  }
-});
-
-// Add a payment card
-apiRouter.post('/user/payment-cards', checkAuth, async (req, res) => {
-  const { cardNumber, expirationDate, cardholderName, brand, isDefault } = req.body;
-  try {
-    const newCard = new PaymentCard({
-      userId: req.user._id,
-      cardNumber,
-      expirationDate,
-      cardholderName,
-      brand,
-      isDefault,
-    });
-    await newCard.save();
-    res
-      .status(201)
-      .json({ success: true, message: 'Card added successfully.', card: newCard.lastFourDigits });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to add the card.' });
-  }
-});
-
-// Edit a payment card
-apiRouter.put('/user/payment-cards/:id', checkAuth, async (req, res) => {
-  const { cardNumber, expirationDate, cardholderName, brand, isDefault } = req.body;
-  try {
-    const card = await PaymentCard.findByIdAndUpdate(
-      req.params.id,
-      { cardNumber, expirationDate, cardholderName, brand, isDefault },
-      { new: true }
-    );
-    if (!card) {
-      return res.status(404).json({ success: false, message: 'Card not found.' });
-    }
-    res.json({ success: true, message: 'Card updated successfully.', card: card.lastFourDigits });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to update the card.' });
-  }
-});
-
-// Delete a payment card
-apiRouter.delete('/user/payment-cards/:id', async (req, res) => {
-  try {
-    const card = await PaymentCard.findByIdAndRemove(req.params.id);
-    if (!card) {
-      return res.status(404).json({ success: false, message: 'Card not found.' });
-    }
-    res.json({ success: true, message: 'Card deleted successfully.' });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to delete the card.' });
+    console.log(error);
+    res.status(500).json({ success: false, message: 'Syntax check failed', error: error.message });
   }
 });
 

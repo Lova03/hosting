@@ -61,13 +61,13 @@ function Navbar() {
 
           <Bars3Icon
             onClick={handleToggle}
-            className={`z-10 h-12 p-1.5 text-slate-100 cursor-pointer transition-all duration-200 ${
+            className={`h-12 p-1.5 text-slate-100 cursor-pointer transition-all duration-200 ${
               opened ? 'opacity-0' : 'opacity-100'
             }`}
           />
           <Bars3CenterLeftIcon
             onClick={handleToggle}
-            className={`absolute right-0 z-10 h-12 p-1.5 text-slate-100 cursor-pointer transition-all duration-200 ${
+            className={`absolute right-0 h-12 p-1.5 text-slate-100 cursor-pointer transition-all duration-200 ${
               opened ? 'opacity-100' : 'opacity-0'
             }`}
           />

@@ -37,3 +37,51 @@
 ::-webkit-scrollbar-button:increment {
   width: 0px;
 }
+
+.dropdown-scrollbar::-webkit-scrollbar-track {
+  background: #44355b;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar-thumb {
+  background: #725f8e;
+  border-radius: 2px;
+}
+.dropdown-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #846ea4;
+}
+
+.dropdown-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.file-input::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+@layer components {
+  .page {
+    @apply relative w-full h-screen px-3 pt-1 pb-8 overflow-y-auto overflow-x-hidden;
+  }
+
+  /* Panel Dropdown Item */
+  .dropdown-item {
+    @apply flex items-center h-9 px-6 space-x-4 cursor-pointer transition-colors duration-200 hover:text-hunyadi-yellow;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

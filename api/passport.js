@@ -1,7 +1,6 @@
 const passport = require('passport');
 const User = require('./models/user');
 const DiscordStrategy = require('passport-discord').Strategy;
-const { v4: uuidv4 } = require('uuid');
 
 const scopes = ['identify', 'email'];
 const prompt = 'consent';
@@ -16,35 +15,38 @@ passport.use(
       prompt: prompt,
     },
     async function (accessToken, refreshToken, profile, done) {
-      const existingUser = await User.findOne({ discordId: profile.id });
-      if (existingUser) {
-        if (existingUser.avatar !== profile.avatar || existingUser.username !== profile.username) {
-          await User.updateOne(
-            { discordId: profile.id },
-            { username: profile.username, avatar: profile.avatar }
-          );
+      try {
+        const existingUser = await User.findOne({ discordId: profile.id });
+        if (existingUser) {
+          if (existingUser.avatar !== profile.avatar || existingUser.username !== profile.username) {
+            await User.updateOne(
+              { discordId: profile.id },
+              { username: profile.username, avatar: profile.avatar }
+            );
+          }
+          return done(null, existingUser);
         }
-        return done(null, existingUser);
+        const user = new User({
+          discordId: profile.id,
+          username: profile.username,
+          avatar: profile.avatar,
+          email: profile.email,
+        });
+        await user.save();
+        return done(null, user);
+      } catch (error) {
+        return done(error, null);
       }
-      const user = new User({
-        id: uuidv4(),
-        discordId: profile.id,
-        username: profile.username,
-        avatar: profile.avatar,
-        email: profile.email,
-      });
-      await user.save();
-      done(null, user);
     }
   )
 );
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser((id, done) => {
-  User.findOne({ id: id })
+  User.findById(id)
     .then((user) => {
       if (!user) {
         done(null, false);

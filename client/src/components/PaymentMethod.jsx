@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectDepositMethod, setDepositMethod } from '../features/controls/controlsSlice';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
-function PaymentMethod({ id, imgSrc, text }) {
+function PaymentMethod({ isDragging = false, id, imgSrc, text }) {
   const dispatch = useDispatch();
   const selectedMethod = useSelector(selectDepositMethod);
   const handleMethodChange = (e) => {
@@ -12,7 +12,12 @@ function PaymentMethod({ id, imgSrc, text }) {
   return (
     <label
       htmlFor={id}
-      className='relative isolate flex flex-col justify-start overflow-hidden cursor-pointer py-2 px-4 h-28 w-52 shrink-0 rounded-lg bg-black/10 transition-all duration-500 hover:bg-white/5'>
+      style={{
+        cursor: isDragging ? 'grabbing' : 'pointer',
+      }}
+      className={`relative isolate flex flex-col justify-start overflow-hidden py-2 px-4 h-28 w-52 shrink-0 rounded-lg bg-black/10 transition-all duration-500 hover:${
+        isDragging ? 'bg-black/10' : 'bg-white/5'
+      }`}>
       <span className='uppercase font-bold text-sm text-hunyadi-yellow'>{text}</span>
       <img
         draggable={false}

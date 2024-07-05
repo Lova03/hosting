@@ -77,7 +77,7 @@ function Transactions() {
       </span>
 
       <div className='overflow-x-auto table-scrollbar mt-12'>
-        <table className='border-collapse w-[1120px] md:w-full table-auto md:table-fixed'>
+        <table className='border-collapse w-[1120px] table-auto'>
           <thead>
             <tr className='bg-english-violet-900'>
               {columns.map(({ label, accessor, sortable }) => {

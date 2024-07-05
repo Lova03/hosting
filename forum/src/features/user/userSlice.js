@@ -34,6 +34,10 @@ const userSlice = createSlice({
     user: {},
     isLoading: true,
     hasError: false,
+    isUpdating: false,
+    updateError: false,
+    isDeleting: false,
+    deleteError: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -54,6 +58,8 @@ const userSlice = createSlice({
 });
 
 export const selectIsLoggedIn = (state) => Boolean(state.user.user?._id);
+export const selectUserIsContributor = (state) => Boolean(state.user.user?.isContributor);
+export const selectUserIsAdmin = (state) => Boolean(state.user.user?.isAdmin);
 export const selectUser = (state) => state.user.user;
 export const selectUserLoading = (state) => state.user.isLoading;
 export const selectUserHasError = (state) => state.user.hasError;

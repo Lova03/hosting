@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
 const vpsSubscriptionSchema = new Schema(
   {
     planId: { type: mongoose.Schema.Types.ObjectId, ref: 'VPSPlan', required: true },

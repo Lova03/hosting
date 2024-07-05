@@ -6,8 +6,13 @@ import { useMemo } from 'react';
  *
  */
 
+const BASE_XP = 500;
+const XP_INCREMENT = 500;
+
 function calculateLevel(totalXp) {
   let level = 1;
+  if (totalXp >= xpForLevel(100)) return 100;
+
   while (xpForLevel(level) <= totalXp) {
     level++;
   }
@@ -15,14 +20,33 @@ function calculateLevel(totalXp) {
 }
 
 function xpForLevel(level) {
-  const baseXP = 500;
-  const ratio = 1.15;
+  if (level === 0) return 0;
 
-  if (level === 0) {
-    return 0;
+  let requiredXp = BASE_XP;
+  for (let i = 1; i < level; i++) {
+    requiredXp += BASE_XP + (i - 1) * XP_INCREMENT;
   }
-  return baseXP * Math.pow(ratio, level - 1);
+
+  return requiredXp;
 }
+
+// function calculateLevel(totalXp) {
+//   let level = 1;
+//   while (xpForLevel(level) <= totalXp) {
+//     level++;
+//   }
+//   return level - 1;
+// }
+
+// function xpForLevel(level) {
+//   const baseXP = 500;
+//   const ratio = 1.15;
+
+//   if (level === 0) {
+//     return 0;
+//   }
+//   return baseXP * Math.pow(ratio, level - 1);
+// }
 
 export function useLevelSystem(totalXp) {
   const isValidXp = totalXp !== null && totalXp !== undefined;
@@ -46,5 +70,7 @@ export function useLevelSystem(totalXp) {
     currentLevel,
     nextLevel: isValidXp ? currentLevel + 1 : 1,
     progressToNextLevel: Math.min(100, Math.max(0, progressToNextLevel)),
+    xpForLevel,
+    calculateLevel,
   };
 }

@@ -31,12 +31,12 @@ function SavedPaymentMethod({ item }) {
         <XMarkIcon className='h-4 text-rose-600 group-hover:text-rose-500' />
       </button>
       {warning && (
-        <div className='absolute isolate inset-0 z-50 w-full h-full backdrop-blur-sm flex justify-end md:justify-between items-center overflow-hidden'>
+        <div className='absolute isolate inset-0 z-50 w-full h-full backdrop-blur-sm flex justify-end items-center overflow-hidden'>
           <span className='uppercase text-xs rounded-sm mx-2 px-6 py-1 border border-rose-600 bg-rose-800/20 transition-all duration-300 hover:bg-rose-600/20 hover:border-rose-500'>
             Are you sure?
           </span>
 
-          <div className='flex space-x-2 mr-2 md:mr-16'>
+          <div className='flex space-x-2 mr-2'>
             <button className='px-5 py-1 rounded border border-rose-600 bg-rose-900/70 transition-all duration-300 text-rose-500 hover:text-rose-400 hover:bg-rose-700/70 hover:border-rose-500 cursor-pointer text-xs uppercase font-semibold'>
               Yes
             </button>

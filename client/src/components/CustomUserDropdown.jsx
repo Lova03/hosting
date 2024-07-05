@@ -140,7 +140,7 @@ function CustomUserDropdown() {
           </div>
 
           {/* Items */}
-          <div className='flex flex-col mt-2 w-full overflow-y-auto flex-1 dropdown-scrollbar'>
+          <div className='flex flex-col mt-2 pb-6 w-full overflow-y-auto flex-1 dropdown-scrollbar'>
             <Link className='userpanelitem' to='/panel/dashboard'>
               <CommandLineIcon className='h-4' />
               <span>Dashboard</span>
@@ -151,17 +151,13 @@ function CustomUserDropdown() {
               <span>Settings</span>
             </Link>
 
-            <button className='userpanelitem' onClick={handleSignOut}>
-              <ArrowRightStartOnRectangleIcon className='h-4' />
-              <span>Sign Out</span>
+            <button className='userpanelitem group' onClick={handleSignOut}>
+              <ArrowRightStartOnRectangleIcon className='text-flame-900 h-4 transition-colors duration-200 group-hover:text-hunyadi-yellow' />
+              <span className='text-flame-900 transition-colors duration-200 group-hover:text-hunyadi-yellow'>
+                Sign Out
+              </span>
             </button>
           </div>
-
-          {/* Total */}
-          <div className='flex w-full items-center justify-between px-4 py-1'></div>
-
-          {/* Buttons */}
-          <div className='flex flex-col items-center py-2'></div>
         </div>
       )}
     </div>

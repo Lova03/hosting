@@ -110,7 +110,7 @@ function Landing() {
         </div>
       </div>
 
-      <div className=' mt-44'>
+      <div className='mt-44'>
         <Footer />
       </div>
     </div>

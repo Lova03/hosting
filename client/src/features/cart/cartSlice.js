@@ -1,14 +1,19 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { selectAllProducts } from '../products/productsSlice';
+import { selectUser } from '../user/userSlice';
 
 export const loadAndValidateCart = createAsyncThunk(
   'cart/loadAndValidate',
   async (_, { getState, dispatch }) => {
-    const savedCart = localStorage.getItem('cart');
+    const state = getState();
+    const user = selectUser(state);
+    if (!user || !user._id) return;
+
+    const savedCart = localStorage.getItem(`cart_${user._id}`);
     if (!savedCart) return;
 
-    const products = selectAllProducts(getState());
+    const products = selectAllProducts(state);
     const cartItems = JSON.parse(savedCart).items;
 
     const validatedItems = cartItems.filter((cartItem) => {

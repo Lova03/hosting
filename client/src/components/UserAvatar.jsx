@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import avatarDefault from '../assets/avatar-default.png';
 
-function UserAvatar({ src }) {
+function UserAvatar({ src, size = 40 }) {
   const [loaded, setLoaded] = useState(false);
 
   const movingLight = useSpring({
@@ -15,7 +15,12 @@ function UserAvatar({ src }) {
   });
 
   return (
-    <div className='relative h-10 w-10 overflow-hidden rounded-full'>
+    <div
+      style={{
+        width: size,
+        height: size,
+      }}
+      className='relative overflow-hidden rounded-full'>
       <img
         draggable={false}
         className={`${loaded ? 'block' : 'hidden'} object-contain select-none`}

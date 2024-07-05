@@ -26,15 +26,21 @@ function SavedPaymentMethods() {
   const [savedPaymentMethods, setSavedPaymentMethods] = useState(dummyData);
 
   return (
-    <div className='w-full flex flex-col rounded-lg shadow-lg p-4 bg-dark-purple'>
-      <span className='font-semibold text-xl'>Payment Methods</span>
-
-      <div className='w-full overflow-x-auto table-scrollbar'>
-        <div className='flex items-start w-[816px] md:w-auto flex-col mt-12 border-t border-slate-700'>
-          {savedPaymentMethods.map((item, idx) => (
-            <SavedPaymentMethod item={item} key={idx} />
-          ))}
-        </div>
+    <div className='w-full grid place-items-center overflow-x-auto table-scrollbar'>
+      <div className='flex flex-shrink-0 items-start w-[816px] flex-col border-t border-slate-700'>
+        {savedPaymentMethods.map((item, idx) => (
+          <SavedPaymentMethod item={item} key={idx} />
+        ))}
+        {savedPaymentMethods?.length === 0 && (
+          <div className='flex flex-col items-center justify-center w-full py-6 px-2 text-center'>
+            <span>You have no payment methods saved!</span>
+            <div className='flex space-x-2 mt-4'>
+              <button className='px-6 py-1 rounded border border-flame-700 bg-flame-900/10 transition-colors duration-300 hover:bg-flame-900/20'>
+                Add
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

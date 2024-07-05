@@ -5,7 +5,7 @@ function NotFound() {
   return (
     <div className='page flex justify-center items-center flex-col text-center'>
       <Helmet>
-        <title>404 Page Not Found | ZoBlaze.com</title>
+        <title>404 Page Not Found | ZoBlaze</title>
         <meta
           name='description'
           content="The page you're looking for cannot be found. It might have been removed, had its name changed, or is temporarily unavailable."

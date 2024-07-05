@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
 const discordBotSubscriptionSchema = new Schema(
   {
     planId: { type: mongoose.Schema.Types.ObjectId, ref: 'DiscordBotPlan', required: true },

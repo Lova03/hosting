@@ -48,7 +48,7 @@ module.exports = {
         'glow-hover': '0px 0px 80px 70px #e879f910',
       },
       height: {
-        mscreen: 'calc(100vh - 3rem)',
+        articles: 'calc(100vh - 100px)',
       },
       animation: {
         'ping-once': 'ping 1s cubic-bezier(0, 0, 0.2, 1) forwards',

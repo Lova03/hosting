@@ -21,8 +21,9 @@ function Footer() {
             <span className='uppercase font-bold select-none'>About</span>
             <div className='flex flex-col space-y-2 mt-4'>
               <span>ZoBlaze</span>
-              <span></span>
-              <span>Tools</span>
+              <Link className='transition-colors duration-200 hover:text-slate-400' to='/tools'>
+                Tools
+              </Link>
             </div>
           </div>
           {/* Follow Us */}
@@ -39,17 +40,17 @@ function Footer() {
             <span className='uppercase font-bold select-none'>Legal</span>
             <div className='flex flex-col space-y-2 mt-4'>
               <Link
-                className='transition-all duration-200 hover:text-slate-400'
+                className='transition-colors duration-200 hover:text-slate-400'
                 to='/legal/terms-and-conditions'>
                 Terms & Conditions
               </Link>
               <Link
-                className='transition-all duration-200 hover:text-slate-400'
+                className='transition-colors duration-200 hover:text-slate-400'
                 to='/legal/privacy-policy'>
                 Privacy Policy
               </Link>
               <Link
-                className='transition-all duration-200 hover:text-slate-400'
+                className='transition-colors duration-200 hover:text-slate-400'
                 to='/legal/service-level-agreement'>
                 Service Level Agreement
               </Link>

@@ -17,7 +17,7 @@ const controlsSlice = createSlice({
     },
     deposit: {
       amount: 5,
-      method: 'paypal',
+      method: 'bitcoin',
     },
   },
   reducers: {

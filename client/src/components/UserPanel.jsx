@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import SignInButton from './SignInButton';
 import CartPanel from './CartPanel';
 import CustomUserDropdown from './CustomUserDropdown';
+import Notifications from './Notifications';
 
 function UserPanel() {
   const dispatch = useDispatch();
@@ -41,15 +42,12 @@ function UserPanel() {
       {loggedIn ? (
         // Logged In
         <div className='flex items-center'>
-          <div className='mr-4'>
+          <div className='mr-2'>
             <CartPanel />
           </div>
 
-          <div className='mr-4 p-2 rounded'>
-            {/* Notification using socket.io
-            Socket.io would only notify client to fetch notis from db
-            Use db to store notis and socket connection only to refetch when needed */}
-            <BellIcon className='h-6' />
+          <div className='mr-4'>
+            <Notifications />
           </div>
 
           {/* Username */}
